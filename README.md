@@ -19,6 +19,7 @@
 
 
 **Device Description**
+
 Our project is a pill box that detects whether a box is opened and whether the expected amount of pills have been taken. The device combines light sensing, weight sensing, local display feedback, and a Node-RED dashboard to monitor medication taking behavior in real time.
 
 This project was inspired by the common problem of missed doses, incorrect doses, and difficulty tracking medication usage. Our system helps detect medication taking events and classify whether the user took too less, the correct amount, or too much medication.
@@ -28,6 +29,7 @@ The Internet augments the system by allowing the device to send live sensor data
 ---
 
 **Device Functionality**
+
 The system uses a light sensor to determine whether the pill box is open or closed. A load cell measures the weight change of the medication container to estimate how much medication has been removed. An OLED and buzzer provides local status feedback, and the device communicates with Node-RED over Wi-Fi and MQTT.
 
 **Main Components**
@@ -50,6 +52,7 @@ Actuators:
 ---
 
 **Challenges**
+
 A major challenge in our project was getting the load cell subsystem to work reliably. We first tried using an I2C-based amplifier, but it was not fully compatible with our hardware in practice, so we were unable to obtain weight measurements. To overcome this problem, we changed to a different amplifier that worked better with our hardware and firmware setup. Once we made this change, the load cell started working properly and we were able to integrate weight-based pill detection into the system.
 
 Another major challenge was separating system responsibilities across sensors and states. Early in development, it was difficult to keep box-open detection and medication-intake classification from interfering with each other. We ultimately restructured the system so that the light sensor only determines whether the box is open or closed, while the weight sensor is used to classify medication states such as `PILL_OK`, `PILL_MORE`, and `PILL_LESS`. This made the logic much clearer and more stable in both the dashboard and the embedded system.
