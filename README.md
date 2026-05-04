@@ -68,9 +68,11 @@ If we were to build this device again, we would verify critical interfaces much 
 ---
 
 **Next Steps & Takeaways**
+
 Moving forward, we would like to further improve the robustness and accuracy of the system, especially for medication-state classification based on weight changes. We plan to continue refining the load cell calibration, threshold tuning, and abnormal case testing so that the system can more reliably distinguish between correct intake, under dose, and over dose conditions. We would also improve the enclosure and overall system integration, strengthen the OTA workflow, and add more complete event logging and data tracking so that the device can be more stable and practical in real-world use.
 
 Through ESE5160, we learned that building a complete IoT system requires the coordination of hardware, embedded firmware, wireless communication, cloud/web interfaces, and system level debugging. More importantly than making individual modules work, we learned how critical it is to integrate the entire system reliably, maintain consistent interfaces, and validate the final prototype through real testing and demonstration.
+
 ---
 
 **Project Links**
