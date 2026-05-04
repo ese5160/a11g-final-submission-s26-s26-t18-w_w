@@ -120,6 +120,8 @@ Through ESE5160, we learned that building a complete IoT system requires the coo
 
 ![final integrated](./Images/FinalIntegrated.jpg)
 
+![integrated2](./Images/integrated2.jpg)
+
 **PCBA Top**
 
 ![PCBA Top](./Images/PCBA_Top.jpg)
