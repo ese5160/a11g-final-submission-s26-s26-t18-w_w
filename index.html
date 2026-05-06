@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Pillbox | W_W T18</title>
+  <meta name="description" content="ESE5160 final project website for the W_W Team T18 smart pillbox prototype." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="#top">Smart Pillbox</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.body.classList.toggle('nav-open')">☰</button>
+      <div class="nav-links">
+        <a href="#summary">Summary</a>
+        <a href="#requirements">Requirements</a>
+        <a href="#gallery">Photos</a>
+        <a href="#links">Links</a>
+        <a href="#takeaways">Takeaways</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero section-pad">
+      <div class="hero-copy">
+        <p class="eyebrow">ESE5160 Final Project · Team T18</p>
+        <h1>Smart Pillbox for Medication Intake Monitoring</h1>
+        <p class="hero-text">
+          A connected pill box that detects box opening, monitors medication weight change,
+          gives local feedback, and reports live status to a Node-RED dashboard through Wi-Fi and MQTT.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="https://drive.google.com/file/d/1n0inVjKLmLhtv-vWRLyq9ha80PUwCRZL/view?usp=sharing" target="_blank" rel="noopener">Watch Video</a>
+          <a class="button secondary" href="#gallery">View Prototype</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="status-card">
+          <h2>Project Snapshot</h2>
+          <ul>
+            <li><span>Team</span><strong>W_W</strong></li>
+            <li><span>Team Number</span><strong>T18</strong></li>
+            <li><span>MCU</span><strong>SIWG917Y121MGABA</strong></li>
+            <li><span>Connectivity</span><strong>Wi-Fi + MQTT</strong></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="team-strip">
+      <div>
+        <strong>Ruoqi Wu</strong>
+        <span>neorqi@seas.upenn.edu · rqW5</span>
+      </div>
+      <div>
+        <strong>Zhihui Wang</strong>
+        <span>wang52@seas.upenn.edu</span>
+      </div>
+    </section>
+
+    <section id="summary" class="section-pad two-col">
+      <div>
+        <p class="eyebrow">Project Summary</p>
+        <h2>What the device does</h2>
+        <p>
+          The smart pillbox detects whether the box is open or closed and estimates how much medication
+          has been removed. It uses light sensing for lid state, load-cell weight sensing for pill intake,
+          an OLED and buzzer for local feedback, and a Node-RED dashboard for remote monitoring.
+        </p>
+        <p>
+          The system was designed to address missed doses, incorrect doses, and difficulty tracking
+          medication usage. It classifies medication behavior as too little, correct, or too much based
+          on weight change during a pill-taking session.
+        </p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <span class="icon">☀️</span>
+          <h3>Light-based lid detection</h3>
+          <p>The TSL2591 light sensor separates box-open and box-closed state detection from medication classification.</p>
+        </article>
+        <article class="feature-card">
+          <span class="icon">⚖️</span>
+          <h3>Weight-based intake estimate</h3>
+          <p>A load cell with HX711 measures medication weight changes and supports tare, calibration, and gram conversion.</p>
+        </article>
+        <article class="feature-card">
+          <span class="icon">📟</span>
+          <h3>Local feedback</h3>
+          <p>The OLED and buzzer provide warning, normal-status, and medication-state feedback directly on the device.</p>
+        </article>
+        <article class="feature-card">
+          <span class="icon">🌐</span>
+          <h3>Cloud dashboard</h3>
+          <p>Wi-Fi and MQTT connect the embedded system to Node-RED for live sensor data and threshold updates.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-pad dark-section">
+      <div class="section-heading">
+        <p class="eyebrow">System Architecture</p>
+        <h2>Hardware and communication flow</h2>
+      </div>
+      <div class="diagram-wrap">
+        <img src="Images/blockDiagram.png" alt="System block diagram" />
+      </div>
+    </section>
+
+    <section id="requirements" class="section-pad">
+      <div class="section-heading">
+        <p class="eyebrow">Validation</p>
+        <h2>Hardware Requirements Review</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Requirement</th>
+              <th>Current Implementation</th>
+              <th>Validation / Evidence</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>HRS-01</td><td>Use a single-cell LiPo battery as the primary power source.</td><td>Battery support was designed, but final validation mainly used the development power setup.</td><td>Board bring-up and full-system operation were verified during demo testing.</td><td><span class="badge partial">Partially Met</span></td></tr>
+            <tr><td>HRS-02</td><td>Provide a stable 3.3V rail for the MCU and peripherals.</td><td>The board and peripherals operate from regulated 3.3V.</td><td>Verified through MCU, light sensor, OLED, load cell interface, and buzzer operation.</td><td><span class="badge met">Met</span></td></tr>
+            <tr><td>HRS-03</td><td>Use the SIWG917Y MCU for Wi-Fi connectivity.</td><td>The SIWG917Y is the main controller and handles Wi-Fi/MQTT directly.</td><td>Verified through MQTT communication with the dashboard.</td><td><span class="badge met">Met</span></td></tr>
+            <tr><td>HRS-04</td><td>Include a load cell and amplifier for pill weight measurement.</td><td>The final prototype includes load cell measurement with tare, calibration, raw reading, and grams conversion.</td><td>Verified by live weight display, baseline reset, and measured weight updates.</td><td><span class="badge met">Met</span></td></tr>
+            <tr><td>HRS-05</td><td>Include a light sensor for interaction context.</td><td>The system publishes light data to MQTT and Node-RED.</td><td>Verified through live dashboard readings and continuous sampling.</td><td><span class="badge met">Met</span></td></tr>
+            <tr><td>HRS-06</td><td>Provide audible reminders using a buzzer.</td><td>The buzzer supports local warning behavior.</td><td>Verified through warning-state testing, though not formally measured by sound level.</td><td><span class="badge partial">Partially Met</span></td></tr>
+            <tr><td>HRS-07</td><td>Display reminder and status information.</td><td>An OLED display replaced the original LED-screen plan.</td><td>Verified by OLED status rendering in integrated firmware.</td><td><span class="badge met">Met · OLED Design Change</span></td></tr>
+            <tr><td>HRS-08</td><td>Include a physical On/Off button.</td><td>Power button behavior was explored, but not fully validated in final integration.</td><td>No final validated power-state demo was included.</td><td><span class="badge partial">Partially Met</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-heading software-heading">
+        <p class="eyebrow">Validation</p>
+        <h2>Software Requirements Review</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Requirement</th>
+              <th>Current Implementation</th>
+              <th>Validation / Evidence</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>SRS-01</td><td>Sample load cell and compute filtered weight at least once per second.</td><td>The application loop samples sensors continuously and publishes MQTT status once per second.</td><td>Verified by live dashboard weight updates.</td><td><span class="badge met">Met</span></td></tr>
+            <tr><td>SRS-02</td><td>Detect pill removal using a configured threshold within a 5-second window.</td><td>Node-RED uses threshold and baseline weight, but does not strictly enforce the 5-second window.</td><td>Verified using dashboard threshold setup and medication-status logic.</td><td><span class="badge partial">Partially Met</span></td></tr>
+            <tr><td>SRS-03</td><td>Maintain RTC-based scheduled reminders within ±1 minute/day.</td><td>RTC scheduling was planned but not demonstrated in the final prototype.</td><td>No final RTC accuracy validation was completed.</td><td><span class="badge not-met">Not Met</span></td></tr>
+            <tr><td>SRS-04</td><td>Trigger local alert if no pill removal occurs within 5 minutes of reminder time.</td><td>Manual warning behavior works through dashboard commands, but autonomous RTC-based reminder flow is incomplete.</td><td>Warning behavior was manually demonstrated.</td><td><span class="badge partial">Partially Met</span></td></tr>
+            <tr><td>SRS-05</td><td>Stop buzzer and update display after valid pill removal.</td><td>Warning commands and medication-state display updates are supported.</td><td>OLED state updates and warning-state control were demonstrated.</td><td><span class="badge met">Met</span></td></tr>
+            <tr><td>SRS-06</td><td>Report Wi-Fi connection status within 30 seconds.</td><td>Firmware connects to Wi-Fi and publishes system status, though full provisioning UX was not demonstrated.</td><td>Verified through MQTT connectivity and system status.</td><td><span class="badge met">Met</span></td></tr>
+            <tr><td>SRS-07</td><td>Upload logged dose events to cloud service.</td><td>The system publishes live light, weight, and state data, but full timestamped logging is incomplete.</td><td>Verified through live MQTT dashboard processing.</td><td><span class="badge partial">Partially Met</span></td></tr>
+            <tr><td>SRS-08</td><td>Detect and warn for abnormal medication behavior.</td><td>Dashboard and MCU support normal, too little, correct, and too much medication states.</td><td>Verified through medication classification and OLED support.</td><td><span class="badge met">Met</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="gallery" class="section-pad gallery-section">
+      <div class="section-heading">
+        <p class="eyebrow">Photos & Screenshots</p>
+        <h2>Final prototype and development evidence</h2>
+      </div>
+      <div class="gallery-grid">
+        <figure><img src="Images/FinalIntegrated.jpg" alt="Final integrated device" /><figcaption>Final Integrated Device</figcaption></figure>
+        <figure><img src="Images/integrated2.jpg" alt="Integrated prototype second view" /><figcaption>Integrated Prototype</figcaption></figure>
+        <figure><img src="Images/PCBA_Top.jpg" alt="PCBA top view" /><figcaption>PCBA Top</figcaption></figure>
+        <figure><img src="Images/PCBA_Bottom.jpg" alt="PCBA bottom view" /><figcaption>PCBA Bottom</figcaption></figure>
+        <figure><img src="Images/Thermal%20Image.jpg" alt="Thermal image" /><figcaption>Thermal Image</figcaption></figure>
+        <figure><img src="Images/Altium2D.png" alt="Altium 2D view" /><figcaption>Altium 2D View</figcaption></figure>
+        <figure><img src="Images/Altium3D.png" alt="Altium 3D view" /><figcaption>Altium 3D View</figcaption></figure>
+        <figure><img src="Images/Node-RED_Dashboard.jpeg" alt="Node-RED dashboard" /><figcaption>Node-RED Dashboard</figcaption></figure>
+        <figure><img src="Images/Node-RED_Backend.jpeg" alt="Node-RED backend flow" /><figcaption>Node-RED Backend</figcaption></figure>
+      </div>
+    </section>
+
+    <section id="takeaways" class="section-pad two-col takeaways">
+      <div>
+        <p class="eyebrow">Challenges</p>
+        <h2>What was difficult</h2>
+        <p>
+          A major challenge was making the load-cell subsystem reliable. The first I2C-based amplifier approach
+          did not work well in practice, so the design moved to a different amplifier path that worked better
+          with the hardware and firmware setup.
+        </p>
+        <p>
+          Another challenge was keeping system logic clean. The final design separates lid state detection
+          from medication classification: the light sensor handles box-open state, while the weight sensor
+          handles pill-state classification.
+        </p>
+      </div>
+      <div>
+        <p class="eyebrow">Learnings & Next Steps</p>
+        <h2>What we learned</h2>
+        <p>
+          PCB fabrication was only the beginning of hardware development. The team learned that critical
+          sensing paths need early validation, especially mixed hardware-firmware interfaces such as load-cell
+          measurement.
+        </p>
+        <p>
+          Next steps include improving load-cell calibration, threshold tuning, abnormal-case testing,
+          enclosure integration, OTA workflow, and event logging for more practical real-world use.
+        </p>
+      </div>
+    </section>
+
+    <section id="links" class="section-pad links-section">
+      <div class="section-heading">
+        <p class="eyebrow">Project Links</p>
+        <h2>Resources</h2>
+      </div>
+      <div class="link-cards">
+        <a class="link-card" href="https://drive.google.com/file/d/1n0inVjKLmLhtv-vWRLyq9ha80PUwCRZL/view?usp=sharing" target="_blank" rel="noopener">
+          <span>Video Presentation</span>
+          <strong>Open demo video →</strong>
+        </a>
+        <a class="link-card" href="http://20.230.14.235:1880/dashboard/medicine-monitor-frontend" target="_blank" rel="noopener">
+          <span>Node-RED Dashboard</span>
+          <strong>Open dashboard →</strong>
+        </a>
+        <a class="link-card" href="https://upenn-eselabs.365.altium.com/designs/155E52AA-0446-4E3F-AF4E-EC34210D7089#design" target="_blank" rel="noopener">
+          <span>Altium 365</span>
+          <strong>Open PCBA design →</strong>
+        </a>
+        <a class="link-card" href="https://github.com/ese5160/a11g-final-submission-s26-s26-t18-w_w.git" target="_blank" rel="noopener">
+          <span>Submission Repository</span>
+          <strong>Open GitHub repo →</strong>
+        </a>
+      </div>
+      <div class="note-box">
+        <strong>Codebase note:</strong> this final website intentionally does not include source code. Add links here to the separate firmware and Node-RED repositories if required by your course submission.
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Smart Pillbox · Team W_W · T18 · ESE5160 Final Project</p>
+  </footer>
+</body>
+</html>
