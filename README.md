@@ -153,7 +153,7 @@ Through ESE5160, we learned that building a complete IoT system requires the coo
 
 Do *not* commit any of your source code to this repository. Rather, provide links to the other GitHub repository you've already been using with your firmware.
 
-- A link to your final embedded C firmware codebases: [https://github.com/ese5160/final-project-firmware-s26-t18-w_w/tree/main/wifi_http_otaf_soc_23]
+- [A link to your final embedded C firmware codebases](https://github.com/ese5160/final-project-firmware-s26-t18-w_w/tree/main/wifi_http_otaf_soc_23)
 
-- A link to your Node-RED dashboard code: [https://github.com/ese5160/final-project-firmware-s26-t18-w_w/blob/main/flows.json]
+- [A link to your Node-RED dashboard code](https://github.com/ese5160/final-project-firmware-s26-t18-w_w/blob/main/flows.json)
 - Links to any other software required for the functionality of your device: None
