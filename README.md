@@ -15,8 +15,9 @@
 
 ## 1. Video Presentation
 
-## 2. Project Summary
+[video](https://drive.google.com/file/d/1n0inVjKLmLhtv-vWRLyq9ha80PUwCRZL/view?usp=sharing)
 
+## 2. Project Summary
 
 **Device Description**
 
@@ -60,7 +61,6 @@ Another major challenge was separating system responsibilities across sensors an
 ---
 
 **Prototype Learnings**
-
 
 During this project, we learned that PCB design and fabrication are not the end of hardware development, but the beginning of system-level debugging. Some interfaces and connection schemes that looked reasonable during schematic capture and PCB layout only revealed problems after the board was fabricated, assembled, and brought up, especially in the areas of multi-peripheral integration, the load cell signal chain, and sensor interface compatibility. This taught us that hardware design cannot stop at being “electrically correct”; it must also take into account later firmware debugging, interface compatibility, and full-system integration.
 
@@ -113,7 +113,6 @@ Through ESE5160, we learned that building a complete IoT system requires the coo
 | SRS-07 | When Wi-Fi is available, the system shall upload logged dose events (timestamp, status, and weight delta) to the cloud service at least once every 60 seconds, or within 30 seconds of an abnormal event.                                                        | The current implementation publishes live light, weight, and system data; Node-RED computes box state and medication state. Full timestamped dose-event logging/upload was not fully implemented as a cloud logging pipeline.                                                                           | Verified live MQTT status publishing and dashboard processing, but not complete dose-event logging/upload.                                               | **Partially Met** |
 | SRS-08 | The system shall detect and log abnormal medication behavior, including (a) missed dose, (b) repeated removals within 10 minutes, or (c) weight change exceeding a configured “too many pills” threshold, and shall trigger a local warning within 10 seconds. | The current dashboard logic supports medication-state classification such as normal / too little / correct / too much medication, and the MCU supports OLED status modes and warning commands. However, the full abnormal-event logging and timed multi-condition rule set was only partially realized. | Verified medication-state classification on the dashboard and OLED mode support in firmware; full event logging and timing validation remain incomplete. | **Met**           |
 
-
 ## 4. Project Photos & Screenshots
 
 **Final Integrated Device**
@@ -149,7 +148,6 @@ Through ESE5160, we learned that building a complete IoT system requires the coo
 **Node-RED Backend**
 
 ![backend](./Images/Node-RED_Backend.jpeg)
-
 
 ## 5. Codebase
 
